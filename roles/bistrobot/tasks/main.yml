@@ -7,3 +7,10 @@
 - name: Install bistrobot from git repo
   pip:
     name: git+https://github.com/nbr23/bistrobot.git
+
+- name: Add ansible_user to gpio group
+  ansible.builtin.user:
+    name: '{{ ansible_user }}'
+    groups: gpio
+    append: true
+  when: ansible_user is defined
